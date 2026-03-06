@@ -8,6 +8,10 @@
 
 ## 🌟 What's New / 更新日志
 
+**v1.7 - Flow Appraisal / 心流鉴赏模块**
+Added Flow Appraisal to the Review agent to assess reader “flow” and “excitement” states with actionable suggestions (Expectation–Response, Breadcrumb transitions, Cognitive load minimization, Aha moments, Candor).
+为检阅智能体新增“心流鉴赏”能力，评估读者是否保持心流与兴奋状态，并给出可执行修订建议（期待-回应闭环、面包屑过渡、认知减负、顿悟、坦诚披露）。
+
 **v1.6 - Spec-Driven Writing (Spec Coding) / 规范驱动写作**
 Added `document_spec_template.md` and `Definition of Done (DoD)` enforcing mechanisms to guarantee engineering-grade accuracy and prevent unauthorized AI rewrites.
 新增 `document_spec_template.md` 与 `DoD` (Definition of Done) 校验机制，确保工程级的高精度输出，杜绝 AI 擅自改写。
@@ -426,14 +430,18 @@ This tutorial shows how to configure each agent role using existing prompt and s
 **Configuration Steps / 配置步骤**:
 1. **Configure GPTZero MCP (New!)**:
    - The agent now supports GPTZero via MCP for AI detection and plagiarism checking.
-   - **Code Reference**: [8_content_review_agent.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/prompts/8_content_review_agent.md#L17-L56)
+   - **Code Reference**: [8_content_review_agent.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/prompts/8_content_review_agent.md#L1-L120)
 2. **Set API Keys & Settings**:
    - Open `.ai_context/custom_specs.md`.
    - Fill in `GPTZero MCP` settings: Service Name, Method, Timeout, and Retry count.
    - Set your `GPTZero API Key`.
-   - **Code Reference**: [custom_specs.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/custom_specs.md#L9-L18)
+   - **Code Reference**: [custom_specs.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/custom_specs.md#L1-L60)
 3. **Usage**: When you trigger "Review" or "Detection", the agent will automatically call GPTZero via MCP and include the results (AI probability, Plagiarism score) in the unified report.
 4. **Adjust Thresholds**: In `.ai_context/custom_specs.md`, set `AI Tone Threshold` to determine when a rewrite is triggered.
+5. **Enable Flow Appraisal / 开启心流鉴赏**:
+   - Set thresholds in **Flow Appraisal Settings**: Min Flow Score, Min Excitement Score, and requirements for Killer Figure 1, Intuition-before-Formula, Signposting, Topic Sentence.
+   - The Review agent will output `flow_appraisal` with scores, missing elements, rationale, and actionable suggestions.
+   - **Code Reference**: [8_content_review_agent.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/prompts/8_content_review_agent.md#L43-L120), [custom_specs.md](file:///Users/huixin/Documents/ProgramDevelopment/AI_Vibe_Writing_Skill/.ai_context/custom_specs.md#L26-L40)
 
 ### 4) Workflow Coordinator / 流程协调器
 **Purpose / 作用**: Orchestrate outline → write → review loops. / 协调整体闭环流程。  

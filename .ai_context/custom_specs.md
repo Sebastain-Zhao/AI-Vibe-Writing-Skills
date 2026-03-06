@@ -27,6 +27,13 @@
   - **AI Tone Threshold**: [e.g. 60]
   - **Detection Priority**: [e.g. builtin, third_party]
   - **Disabled Detectors**: [e.g. gptzero, originality]
+- **Flow Appraisal Settings**:
+  - **Min Flow Score**: [e.g. 70]
+  - **Min Excitement Score**: [e.g. 70]
+  - **Require Killer Figure 1**: [e.g. true]
+  - **Require Intuition Before Formula**: [e.g. true]
+  - **Signposting Required**: [e.g. true]
+  - **Topic Sentence Required**: [e.g. true]
 - **Reference Learning Settings**:
   - **Library Path**: [e.g. .ai_context/memory/reference_library.json]
   - **Ingestion Mode**: [e.g. summary_only, summary_and_quotes]

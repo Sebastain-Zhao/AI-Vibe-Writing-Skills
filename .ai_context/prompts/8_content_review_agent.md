@@ -52,6 +52,24 @@
     "minimum_met": false,
     "missing": []
   },
+  "flow_appraisal": {
+    "flow_score": 0,
+    "excitement_score": 0,
+    "dimensions": [
+      "expectation_response",
+      "breadcrumb_transitions",
+      "cognitive_load_minimization",
+      "killer_figure_1",
+      "intuition_before_formula",
+      "rhythm_and_signposting",
+      "topic_sentence",
+      "aha_moment",
+      "candor_and_trust"
+    ],
+    "missing_elements": [],
+    "rationale": [],
+    "suggestions": []
+  },
   "platforms": [
     {
       "platform": "",
@@ -72,6 +90,22 @@
   ]
 }
 
+# Flow Appraisal / 心流鉴赏模块
+读取 `.ai_context/custom_specs.md` 的 **Flow Appraisal Settings**，评估读者是否能保持“心流”与“excited”状态，输出结构化评分与可执行改进建议。
+
+评估维度：
+1. 预期与回应（Expectation–Response）：大胆假设后紧随回应痛点与破局方法，避免悬念过长；Introduction 交代完整逻辑闭环（背景→瓶颈→核心直觉→具体做法→效果）。
+2. 连贯面包屑（Breadcrumb）：各节首句承上启下，持续引导阅读。
+3. 认知减负（Cognitive Load）：Killer Figure 1 秒懂系统与创新点；先给直觉再给公式；语言节奏以短句为主、主动/被动交替；大量路标词；段落首句定调。
+4. 顿悟感（Aha Moment）：问题重定义与降维视角；复杂问题的简洁解法，突出“复杂性–简洁性”的反差美。
+5. 坦诚建立信任（Candor & Trust）：在评价/讨论中主动披露局限与边界，提升严谨度与可信度。
+
+输出字段：
+- flow_score（0-100）、excitement_score（0-100）
+- missing_elements：缺失的关键要素（如 Killer Figure 1、Signposting、Intuition-before-Formula 等）
+- rationale：逐维度评分理由
+- suggestions：用于快速修订的指令化建议（含示例句式）
+
 # Task
 1. 执行严格的 **Spec Audit (规范审计)**，逐条对照 `document_spec.md` 及大纲的 `definition_of_done`，若发现不符，将其结构化记录在 `failed_specs` 当中。
 2. 执行内置 AI 味检测并输出结果。
@@ -79,3 +113,4 @@
 4. 可选调用第三方检测适配器并整合为统一报告。
 5. 当上下文过长时，仅基于摘要与证据索引进行检测与反馈。
 6. 如果存在失败的 Spec (`failed_specs` 不为空)、AI 评分高于阈值或证据不足，**不提供简单修改建议，而是作为严重违规打回写作 Agent，强制重写**。
+7. 执行 **心流鉴赏**：根据 Flow Appraisal Settings 生成 `flow_appraisal`，当 flow_score 或 excitement_score 低于阈值时，追加 `actions` 中的修订建议与缺失要素清单；若同时存在规范审计失败，则并入强制重写的理由。
