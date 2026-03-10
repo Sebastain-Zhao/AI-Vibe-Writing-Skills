@@ -27,6 +27,13 @@
   - **AI Tone Threshold**: [e.g. 60]
   - **Detection Priority**: [e.g. builtin, third_party]
   - **Disabled Detectors**: [e.g. gptzero, originality]
+- **AI Style Scrub Settings**:
+  - **Flag Mechanical Transitions**: [e.g. true]
+  - **Flag Hyperbolic Modifiers**: [e.g. true]
+  - **Flag Absolute Claims**: [e.g. true]
+  - **Flag Nominalizations**: [e.g. true]
+  - **Out-of-Domain Jargon Policy**: [e.g. replace_with_plain_english]
+  - **Tell-Tale Word List**: [e.g. delve,tapestry,testament,multifaceted,fosters,in summary,to summarize]
 - **Flow Appraisal Settings**:
   - **Min Flow Score**: [e.g. 70]
   - **Min Excitement Score**: [e.g. 70]

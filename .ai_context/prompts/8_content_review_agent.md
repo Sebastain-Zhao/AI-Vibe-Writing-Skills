@@ -16,6 +16,16 @@
   "reason": ""
 }
 
+# AI 风格清理检查清单（AI Style Scrub Checklist）
+- 句式节奏：避免“全是中等长度、平衡句”的机械感；混合极短强调句与较长解析句。
+- 机械过渡词：标记并建议替换段首的 “Furthermore, Moreover, Additionally, In conclusion” 等。
+- 形容词/副词夸张：识别 “paramount, crucial, revolutionary, vital” 等情绪性词；建议改为客观描述。
+- 学术性“模糊限定”：鼓励使用 “These findings suggest / The data indicates / points to a potential ...” 等精确 hedging，禁止绝对化 “This proves ...”。
+- 具体性注入：对泛泛而谈的段落提示加入具体数值、研究者姓名、方法约束与变量范围。
+- 领域外隐喻/行话：检测并替换 CS/商业/物理等非本域隐喻与术语（如 leverage, ecosystem, orthogonal 等）。
+- 僵尸名词（Nominalizations）：标记 -tion/-ment/-ance 结尾的名词化表达（如 “perform an evaluation of”），建议还原为主动动词。
+- 关键词承接：建议用上一段的核心术语承接，而非机械过渡词。
+
 # Detector Adapter Schema
 抽象接口：
 {
@@ -47,6 +57,16 @@
     "plagiarism_score": null
   },
   "sentences": [],
+  "ai_style_audit": {
+    "mechanical_transitions_found": [],
+    "hyperbolic_modifiers_found": [],
+    "absolute_claims_found": [],
+    "hedging_suggestions": [],
+    "out_of_domain_jargon_found": [],
+    "nominalizations_found": [],
+    "specificity_gaps": [],
+    "keyword_linking_opportunities": []
+  },
   "evidence": {
     "coverage": 0,
     "minimum_met": false,
@@ -114,3 +134,12 @@
 5. 当上下文过长时，仅基于摘要与证据索引进行检测与反馈。
 6. 如果存在失败的 Spec (`failed_specs` 不为空)、AI 评分高于阈值或证据不足，**不提供简单修改建议，而是作为严重违规打回写作 Agent，强制重写**。
 7. 执行 **心流鉴赏**：根据 Flow Appraisal Settings 生成 `flow_appraisal`，当 flow_score 或 excitement_score 低于阈值时，追加 `actions` 中的修订建议与缺失要素清单；若同时存在规范审计失败，则并入强制重写的理由。
+
+# Tell-Tale AI Word List（优先替换/删减）
+- Delve → Examine / investigate / explore / analyze
+- Tapestry → Network / complex system / combination
+- Testament → Demonstrates / highlights / shows
+- Multifaceted → Complex / varied / layered
+- Fosters → Promotes / encourages / builds
+- In summary / To summarize → 直接给出结论句，不使用程式化收尾
+- 机械段首：Furthermore / Moreover / Additionally / In conclusion
