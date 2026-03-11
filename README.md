@@ -493,6 +493,28 @@ graph TD
 ```
 
 
+## 🛡️ AI 写作检测方案
+
+### 1. 在线 API 检测 (Content Review Agent)
+通过 `content-review-agent` 集成第三方 API（如 GPTZero, Copyleaks）进行实时检测。
+配置方式请参考 [Step 9: API Key Configuration](#step-9-api-key-configuration-api-key-配置)。
+
+### 2. 本地离线检测 (Local AI Style Check)
+本仓库提供了一套完全离线、隐私安全的本地检测方案，专为 LaTeX 论文源码设计。
+它结合了高频 AI 词汇扫描（中英文）与困惑度（PPL）计算，精准定位 AI 润色痕迹。
+
+**使用方法**:
+1. 进入检测工具目录: `cd Local_AI_Style_Check`
+2. 安装依赖: `pip install -r requirements.txt`
+3. 运行检测脚本: `python paper_ai_detector.py`
+
+**功能亮点**:
+- **双重 LaTeX 清洗**: 正则 + AST 解析，完美剥离公式与引用，只检测正文。
+- **高频词扫描**: 内置 "delve", "tapestry", "赋能", "重塑" 等 40+ 个中英文 AI 惯用词库。
+- **PPL 困惑度分析**: 本地运行 distilgpt2 模型，量化文本的“机器生成概率”。
+
+详细指南请查阅 [Local_AI_Style_Check/README.md](./Local_AI_Style_Check/README.md)。
+
 ## 📈 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=donghuixin/AI-Vibe-Writing-Skills&type=Date&cache=20260222)](https://star-history.com/#donghuixin/AI-Vibe-Writing-Skills&Date)
