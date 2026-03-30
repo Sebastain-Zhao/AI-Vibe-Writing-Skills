@@ -1,0 +1,3 @@
+[5]Convolutional Neural Network based Nonlinear Classifier.pdf
+[6]End-to-End_Learning_for_100G-PON_Based_on_Noise_Adaptation_Network.pdf
+[7]High_Dynamic_Range_100G_PON_Enabled_by_SOA_Preamplifier_and_Recurrent_Neural_Networks.pdf

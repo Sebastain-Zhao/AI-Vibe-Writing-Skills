@@ -1,0 +1,135 @@
+{
+  "generated_at": "2026-03-30",
+  "source_pdf": "Convolutional Neural Network based Nonlinear Classifier.pdf",
+  "references": [
+    {
+      "id": 1,
+      "original_citation": "J. D'Ambrosia, \"IEEE P802.3bs Baseline Summary,\" IEEE P802.3bs 400GbE Task Force (2015).",
+      "title": "IEEE P802.3bs Baseline Summary",
+      "authors": ["J. D'Ambrosia"],
+      "year": 2015,
+      "source": "IEEE P802.3bs 400GbE Task Force",
+      "link": "http://www.ieee802.org/3/bs/baseline_3bs_0715.pdf",
+      "abstract": "400GbE (400 Gb/s 以太网) 标准的基线总结，采用PAM4技术，代表了下一代移动网络的转型时刻。",
+      "domain": ["网络通信", "以太网标准"]
+    },
+    {
+      "id": 2,
+      "original_citation": "A. Ghiasi, \"400GBase-LR8: A proposal for 10 km objective Using 50 Gb/s PAM4 Signaling,\" IEEE P802.3bs 400GbE Task Force (2015).",
+      "title": "400GBase-LR8: A proposal for 10 km objective Using 50 Gb/s PAM4 Signaling",
+      "authors": ["A. Ghiasi (Ali Ghiasi, Broadcom公司)"],
+      "year": 2015,
+      "source": "IEEE P802.3bs 400GbE Task Force",
+      "link": null,
+      "abstract": "400GBASE-LR8是400G以太网的一种光模块标准，采用8个并行传输通道，每通道50 Gb/s传输速率，总传输速率400 Gbps，单模光纤传输距离可达10公里，采用PAM4调制技术。",
+      "domain": ["光通信", "以太网标准"]
+    },
+    {
+      "id": 3,
+      "original_citation": "E. Yan et al., in proc. ECOC, Mo.1.B.2 (2012).",
+      "title": "(待补充)",
+      "authors": ["E. Yan", "et al."],
+      "year": 2012,
+      "source": "ECOC (European Conference on Optical Communications)",
+      "conference_paper_id": "Mo.1.B.2",
+      "link": null,
+      "abstract": null,
+      "domain": ["光通信"]
+    },
+    {
+      "id": 4,
+      "original_citation": "M. A. Jarajreh et al., IEEE Photo. Tech. Letter, vol. 27, No. 4, Feb. (2015).",
+      "title": "(待补充)",
+      "authors": ["M. A. Jarajreh", "et al."],
+      "year": 2015,
+      "month": "Feb",
+      "journal": "IEEE Photonics Technology Letters (IEEE光子技术快报)",
+      "volume": "27",
+      "issue": "4",
+      "issn": "1041-1135",
+      "e_issn": "1941-0174",
+      "link": null,
+      "abstract": null,
+      "domain": ["光学", "电子工程"]
+    },
+    {
+      "id": 5,
+      "original_citation": "I. J. Goodfellow et al., arXiv preprint arXiv: 1406.2661 (2014).",
+      "title": "Generative Adversarial Nets",
+      "authors": ["Ian J. Goodfellow", "Jean Pouget-Abadie", "Mehdi Mirza", "Bing Xu", "David Warde-Farley", "Sherjil Ozair", "Aaron Courville", "Yoshua Bengio"],
+      "year": 2014,
+      "source": "arXiv preprint",
+      "arxiv_id": "1406.2661",
+      "link": "https://arxiv.org/abs/1406.2661",
+      "abstract": "提出生成对抗网络(GAN)，一种通过对抗过程估计生成模型的新框架。",
+      "domain": ["深度学习", "机器学习"]
+    },
+    {
+      "id": 6,
+      "original_citation": "D. Silver et al., Nature, vol. 529, pp 484-489, Jan. (2016).",
+      "title": "Mastering the game of Go with deep neural networks and tree search",
+      "authors": ["David Silver", "Aja Huang", "et al."],
+      "year": 2016,
+      "month": "Jan",
+      "journal": "Nature",
+      "volume": "529",
+      "pages": "484-489",
+      "link": null,
+      "abstract": "使用深度神经网络和树搜索掌握围棋游戏，AlphaGo的开创性论文。",
+      "domain": ["人工智能", "强化学习"]
+    },
+    {
+      "id": 7,
+      "original_citation": "B. Huval et al., arXiv preprint arXiv: 1504.01716 (2015).",
+      "title": "An Empirical Evaluation of Deep Learning on Highway Driving",
+      "authors": ["B. Huval", "T. Wang", "S. Tandon", "et al."],
+      "year": 2015,
+      "month": "Apr",
+      "source": "arXiv preprint",
+      "arxiv_id": "1504.01716",
+      "link": "https://arxiv.org/abs/1504.01716",
+      "abstract": "对高速公路驾驶场景下深度学习的实证评估。",
+      "domain": ["自动驾驶", "计算机视觉"]
+    },
+    {
+      "id": 8,
+      "original_citation": "C. Y. Chuang et al., in proc. ECOC, W.2 D.2 (2017).",
+      "title": "(待补充)",
+      "authors": ["C. Y. Chuang", "et al."],
+      "year": 2017,
+      "source": "ECOC (European Conference on Optical Communications)",
+      "conference_paper_id": "W.2 D.2",
+      "link": null,
+      "abstract": null,
+      "domain": ["光通信"]
+    },
+    {
+      "id": 9,
+      "original_citation": "K. Azadet et al., \"Forward Error Correction (FEC) techniques for optical communications,\" IEEE 802.3 High-Speed Study Group (1999).",
+      "title": "Forward Error Correction (FEC) techniques for optical communications",
+      "authors": ["K. Azadet", "et al."],
+      "year": 1999,
+      "source": "IEEE 802.3 High-Speed Study Group",
+      "link": null,
+      "abstract": "前向纠错(FEC)技术在光通信中的应用，FEC子层用于提高链路性能。",
+      "domain": ["光通信", "纠错编码"]
+    },
+    {
+      "id": 10,
+      "original_citation": "Y. LeCun et al., in proc. IEEE, Nov. (1998).",
+      "title": "(待补充，推测为卷积神经网络相关论文)",
+      "authors": ["Yann LeCun", "et al."],
+      "year": 1998,
+      "month": "Nov",
+      "source": "Proceedings of IEEE",
+      "link": null,
+      "abstract": "Yann LeCun关于卷积神经网络(CNN)的经典论文，CNN是一种包含卷积计算且具有深度结构的前馈神经网络。",
+      "domain": ["深度学习", "计算机视觉"]
+    }
+  ],
+  "notes": {
+    "incomplete_references": [3, 4, 8, 10],
+    "arxiv_available": [5, 7],
+    "needs_further_search": true
+  }
+}

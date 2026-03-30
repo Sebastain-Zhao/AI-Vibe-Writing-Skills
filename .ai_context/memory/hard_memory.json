@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "description": "Hard memory for exact terms, units, and key numbers by domain.",
+  "domains": {
+    "general": {
+      "terms": [],
+      "units": [],
+      "key_values": []
+    },
+    "outline": {
+      "terms": [],
+      "units": [],
+      "key_values": []
+    },
+    "paper": {
+      "terms": [
+        {
+          "term": "Contribution Types",
+          "definition": "Core contributions typically fall into Insight, Performance, or Capability."
+        },
+        {
+          "term": "CARS Introduction Moves",
+          "definition": "Establish territory, find a niche, and occupy the niche."
+        },
+        {
+          "term": "Confusion Time",
+          "definition": "Total reader time spent resolving confusion; reduce by explaining concepts when introduced."
+        },
+        {
+          "term": "Information Density",
+          "definition": "Efficiency of conveying effective information; avoid irrelevant history and redundancy."
+        }
+      ],
+      "units": [],
+      "key_values": [
+        {
+          "key": "Paper core structure",
+          "value": "Abstract → Introduction → Main body (Related Work, Methodology, Experiments, Discussion, Conclusion) → References."
+        },
+        {
+          "key": "Submission polish checklist focus",
+          "value": "Consistency of symbols/refs, figures cited in order, clear captions, anonymity and page limit checked."
+        }
+      ]
+    },
+    "thesis": {
+      "terms": [
+        {
+          "term": "CARS Introduction Moves",
+          "definition": "Establish territory, find a niche, and occupy the niche."
+        },
+        {
+          "term": "Confusion Time",
+          "definition": "Total reader time spent resolving confusion; reduce by explaining concepts when introduced."
+        },
+        {
+          "term": "Information Density",
+          "definition": "Efficiency of conveying effective information; avoid irrelevant history and redundancy."
+        }
+      ],
+      "units": [],
+      "key_values": [
+        {
+          "key": "Thesis core structure",
+          "value": "Introduction → Background/Related Work → Methodology → Experiments/Results → Discussion → Conclusion."
+        }
+      ]
+    },
+    "grant": {
+      "terms": [
+        {
+          "term": "Specific Aims",
+          "definition": "Concise statement of goals and hypotheses that anchors the proposal."
+        },
+        {
+          "term": "Review Criteria Alignment",
+          "definition": "Explicitly map proposal text to funder criteria and mission."
+        },
+        {
+          "term": "Feasibility Evidence",
+          "definition": "Concrete milestones, timeline, and risk mitigation to demonstrate achievability."
+        }
+      ],
+      "units": [],
+      "key_values": []
+    }
+  },
+  "Optical Communication": {
+    "terminology": [],
+    "facts": [
+      {
+        "source": "paper_5",
+        "content": "outperforms traditional Volterra nonlinear equalizer s. A BER of 3.50 × 10−6 is obtained for  a  112-Gbps PAM4 EML-based optical link over 40-km SMF transmission.  OCIS codes: (060.4510) Optical communications; (100.4996) Pattern recognition, neural networks; (200.4260) Neural  networks"
+      },
+      {
+        "source": "paper_6",
+        "content": "ize the optimal performance of optical communication systems. By replacing the independent signal processing modules in the transmitter and receiver with deep neural networks, end-to-end system optimization can be achieved via training the neural net- works together on a differentiable channel. In this paper, a noise adaptation network for channel modeling is proposed to simulate channel response and the impact of channel noise on transmitted signals. The structure of the noise adaptation network is multi-scale deep neural network (MscaleDNN), which can better characterize the channel at different frequencies. Based on the noise adapta- tion network, a novel end-to-end learning framework is further designed. Within the framework, memory buffer technology and constraint loss are introduced to signiﬁcantly enhance the efﬁciency and performance of end-to-end learning. Experimental demonstra- tion of the proposed end-to-end learning scheme is performed on a 100G passive optical network (PON) system based on intensity modulation and direct detection. The results indicate that, com- pared to the optimized V olterra non-linear equalization at the receiver and the joint equalization achieved by indirect approach, end-to-end optimization improves receiver sensitivity by 0.8 dB and 1.2 dB, respectively, and achieves a power budget of 31.4 dB. In particular, the advantages of the end-to-end learning are even more pronounced in the case of higher received optical power . Index Terms —Constraint loss, end-to-end learning, memory buffer, MscaleDNN, noise adaptation network, PON. I. I NTRODUCTION S TIMULA TED by rapid trafﬁc growth in the access and short-reach networks, single-wavelength data rate of pas- sive optical network (PON) is moving from 25 Gbps to 50 Gbps and 100 Gbps. Nowadays, 50G-PON has been standardized by ITU-T and IEEE [1], [2], [3]. The 50G-PON physical layer keeps the intensity modulation and direct detection (IM/DD) scheme and employs digital signal processing (DSP) for the ﬁrst time. The standardization of 100G-PON is still on the way, and research on the key technologies of 100G-PON has been widely Manuscript received 8 May 2023; revised 17 August 2023, 13 October 2023, and 20 November 2023; accepted 7 December 2023. Date of publication 12 December 2023; date of current version 2 April 2024. This work was supported in part by the National Key R&D Program of China under Grant 2019YFB1803803 and in part by the National Natural Science Foundation of China under Grant 62025503. (Corresponding author: Lilin Yi.) The authors are with the State Key Laboratory of Advanced Optical Com- munication Systems and Networks, Department of Electronic Engineering, Shanghai Jiao Tong University, Shanghai 200240, China (e-mail: xuyongxin@ sjtu.edu.cn; luyaohuang@sjtu.edu.cn; sjtujwq@sjtu.edu.cn; guanxiaokai@ sjtu.edu.cn; wshu@sjtu.edu.cn; lilinyi@sjtu.edu.cn). Color versions of one or more ﬁgures in this article are available at https://doi.org/10.1109/JLT.2023.3341495. Digital Object Identiﬁer 10.1109/JLT.2023.3341495 investigated [4], [5], [6], [7], [8], [9], [10]. Compared to com-"
+      },
+      {
+        "source": "paper_7",
+        "content": "focused on future systems targeting 100 Gb/s/ λ and beyond, with digital signal processing seen as a key enabling technology. Spec- trally efﬁcient 4-level pulse amplitude modulation (PAM4) is seen as a cost-effective solution that exploits the ready availability of cheaper, low-bandwidth devices, and Semiconductor Optical Am- pliﬁers (SOA) are being investigated as receiver preampliﬁers to compensate PAM4’s high signal-to-noise ratio requirements and meet the demanding 29 dB PON loss budget. However, SOA gain saturation-induced patterning distortion is a concern in the context of PON burst-mode signalling, and the 19.5 dB loud-soft packet dynamic range expected by the most recent ITU-T 50G standards. In this article we propose a recurrent neural network equalisation technique based on gated recurrent units (GRU-RNN) to not only mitigate SOA patterning affecting loud packet bursts, but to also exploit their remarkable effectiveness at compensating non-linear impairments to unlock the SOA gain saturated regime. Using such an equaliser we demonstrate > 28 dB system dynamic range in 100 Gb/s PAM4 system by using SOA gain compression in conjunction with GRU-RNN equalisation. We ﬁnd that our pro- posed GRU-RNN has similar equalisation capabilities as non-linear V olterra, fully connected neural network, and long short-term memory based equalisers, but observe that feedback-based RNN equalisers are more suited to the varying levels of impairment inherent to PON burst-mode signalling due to their low input tap requirements. Recognising issues surrounding hardware im- plementation of RNNs, we investigate a multi-symbol equalisation scheme to lower the feedback latency requirements of our proposed GRU-RNN. Finally, we compare equaliser complexities and perfor- mances according to trainable parameters and real valued multipli- cation operations, ﬁnding that the proposed GRU-RNN equaliser is more efﬁcient than those based on V olterra, fully connected neural networks or long short-term memory units proposed elsewhere. Index Terms —Digital signal processing, four-level pulse amplitude modulation, machine learning, optical ﬁber communications, passive optical network, semiconductor optical ampliﬁer . I. I NTRODUCTION T HE ITU-T Higher Speed Passive Optical Network (HS- PON) recommendations were published in September Manuscript received 15 November 2022; revised 31 January 2023; accepted 19 February 2023. Date of publication 28 February 2023; date of current version 9 June 2023. This work was supported by Science Foundation Ireland (SFI) under Grant 12/RC/2276P2. (Corresponding author: Stephen Murphy.) The authors are with the Tyndall National Institute, T12 R5CP Cork, Ireland (e-mail: stephen.murphy@tyndall.ie; fariba.jamali@tyndall.ie; paul.townsend@tyndall.ie; cleitus.antony@tyndall.ie). Color versions of one or more ﬁgures in this article are available at https://doi.org/10.1109/JLT.2023.3249046. Digital Object Identiﬁer 10.1109/JLT.2023.3249046 2021, and outline industry requirements for next generation"
+      }
+    ]
+  }
+}
