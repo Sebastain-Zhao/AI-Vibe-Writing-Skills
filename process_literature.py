@@ -36,19 +36,19 @@ def save_json(data, file_path):
 
 def extract_metadata_from_filename(filename):
     """Extract metadata from filename"""
-    # Extract citation number and title
-    match = re.match(r'\[(\d+)\](.+?)\.pdf', filename)
+    # Extract title without numbers
+    match = re.match(r'\[\d+\](.+?)\.pdf', filename)
     if match:
-        citation_number = match.group(1)
-        title = match.group(2).strip()
-        # Replace underscores with spaces
-        title = title.replace('_', ' ')
-        return {
-            'citation_number': citation_number,
-            'title': title
-        }
+        title = match.group(1).strip()
+    else:
+        title = os.path.splitext(filename)[0]
+    # Replace underscores with spaces
+    title = title.replace('_', ' ')
+    # Get clean filename without extension for ID
+    clean_filename = os.path.splitext(filename)[0]
     return {
-        'title': os.path.splitext(filename)[0]
+        'title': title,
+        'clean_filename': clean_filename
     }
 
 def extract_key_information(text):
@@ -101,7 +101,7 @@ def process_pdf_file(pdf_path):
     
     # Create source entry
     source = {
-        'id': f"paper_{metadata.get('citation_number', 'unknown')}",
+        'id': metadata['clean_filename'],
         'title': metadata['title'],
         'file_path': pdf_path,
         'abstract': key_info['abstract'],
@@ -130,17 +130,70 @@ def main():
             'by_year': {}
         }
     
+    # Remove duplicates from existing data
+    existing_ids = set()
+    unique_sources = []
+    for source in reference_library['sources']:
+        if source['id'] not in existing_ids:
+            existing_ids.add(source['id'])
+            unique_sources.append(source)
+    reference_library['sources'] = unique_sources
+    
+    # Clean up index
+    reference_library['index'] = {
+        'by_domain': {},
+        'by_tag': {},
+        'by_year': {}
+    }
+    for source in reference_library['sources']:
+        domain = source['domain']
+        if domain not in reference_library['index']['by_domain']:
+            reference_library['index']['by_domain'][domain] = []
+        reference_library['index']['by_domain'][domain].append(source['id'])
+        
+        year = source['year']
+        if year not in reference_library['index']['by_year']:
+            reference_library['index']['by_year'][year] = []
+        reference_library['index']['by_year'][year].append(source['id'])
+        
+        for term in source['key_terms']:
+            if term not in reference_library['index']['by_tag']:
+                reference_library['index']['by_tag'][term] = []
+            reference_library['index']['by_tag'][term].append(source['id'])
+    
     # Process all PDF files in the literature folder
     pdf_files = [f for f in os.listdir(LITERATURE_FOLDER) if f.lower().endswith('.pdf')]
     
     print(f"Found {len(pdf_files)} PDF files in {LITERATURE_FOLDER}")
     
+    added_count = 0
+    # Create a map of existing sources by ID for easy lookup
+    existing_sources_map = {source['id']: source for source in reference_library['sources']}
+    
     for pdf_file in pdf_files:
         pdf_path = os.path.join(LITERATURE_FOLDER, pdf_file)
         source = process_pdf_file(pdf_path)
         
+        # Check if already exists
+        if source['id'] in existing_ids:
+            print(f"  Already exists, updating: {source['title']}")
+            # Preserve existing references and citation_contexts
+            existing_source = existing_sources_map.get(source['id'], {})
+            if 'references' in existing_source:
+                source['references'] = existing_source['references']
+            if 'citation_contexts' in existing_source:
+                source['citation_contexts'] = existing_source['citation_contexts']
+            # Replace the old source with the new one
+            for i, s in enumerate(reference_library['sources']):
+                if s['id'] == source['id']:
+                    reference_library['sources'][i] = source
+                    break
+            continue
+        
         # Add to reference library
         reference_library['sources'].append(source)
+        existing_ids.add(source['id'])
+        added_count += 1
         
         # Update index
         domain = source['domain']
@@ -158,28 +211,29 @@ def main():
             if term not in reference_library['index']['by_tag']:
                 reference_library['index']['by_tag'][term] = []
             reference_library['index']['by_tag'][term].append(source['id'])
-        
-        # Update hard memory with domain knowledge
-        if 'Optical Communication' not in hard_memory:
-            hard_memory['Optical Communication'] = {
-                'terminology': set(),
-                'facts': []
-            }
-        
-        # Add key terms to terminology
+    
+    # Rebuild hard memory from scratch
+    hard_memory = load_json(HARD_MEMORY)
+    if 'Optical Communication' not in hard_memory:
+        hard_memory['Optical Communication'] = {
+            'terminology': [],
+            'facts': []
+        }
+    
+    # Collect unique terminology and facts
+    terminology_set = set()
+    facts_dict = {}
+    for source in reference_library['sources']:
         for term in source['key_terms']:
-            hard_memory['Optical Communication']['terminology'].add(term)
-        
-        # Add abstract as a fact
+            terminology_set.add(term)
         if source['abstract']:
-            hard_memory['Optical Communication']['facts'].append({
+            facts_dict[source['id']] = {
                 'source': source['id'],
                 'content': source['abstract']
-            })
+            }
     
-    # Convert sets to lists for JSON serialization
-    if 'Optical Communication' in hard_memory:
-        hard_memory['Optical Communication']['terminology'] = list(hard_memory['Optical Communication']['terminology'])
+    hard_memory['Optical Communication']['terminology'] = list(terminology_set)
+    hard_memory['Optical Communication']['facts'] = list(facts_dict.values())
     
     # Update soft memory with preferences
     if 'writing_style' not in soft_memory:
@@ -192,7 +246,8 @@ def main():
     save_json(soft_memory, SOFT_MEMORY)
     
     print(f"\nProcessing complete!")
-    print(f"Added {len(pdf_files)} sources to reference_library.json")
+    print(f"Added {added_count} new sources to reference_library.json")
+    print(f"Total sources: {len(reference_library['sources'])}")
     print(f"Updated hard_memory.json with domain knowledge")
     print(f"Updated soft_memory.json with preferences")
 
