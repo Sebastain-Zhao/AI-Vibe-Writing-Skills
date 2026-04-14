@@ -28,11 +28,29 @@ def load_json(file_path):
         except json.JSONDecodeError:
             return {}
 
+def clean_unicode(text):
+    """Clean invalid Unicode characters from text"""
+    if isinstance(text, str):
+        return text.encode('utf-8', errors='ignore').decode('utf-8')
+    return text
+
+def clean_data(obj):
+    """Recursively clean all strings in a data structure"""
+    if isinstance(obj, dict):
+        return {k: clean_data(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [clean_data(item) for item in obj]
+    elif isinstance(obj, str):
+        return clean_unicode(obj)
+    else:
+        return obj
+
 def save_json(data, file_path):
-    """Save JSON file"""
+    """Save JSON file with Unicode cleaning"""
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    cleaned_data = clean_data(data)
     with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
 def extract_metadata_from_filename(filename):
     """Extract metadata from filename"""

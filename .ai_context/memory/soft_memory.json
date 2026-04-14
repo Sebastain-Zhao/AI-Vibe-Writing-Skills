@@ -46,30 +46,139 @@
         "Ambiguous referents and long sentences with unclear relative clauses.",
         "Redundant restatement without added insight."
       ]
-    },
-    "grant": {
-      "preferences": [
-        "Align each section with the funder’s mission and explicit review criteria.",
-        "Structure Specific Aims for clarity, feasibility, and impact.",
-        "Provide a realistic timeline and milestones to demonstrate feasibility.",
-        "Surface potential risks and mitigation strategies early.",
-        "Use a compelling, specific, benefit-oriented title."
-      ],
-      "phrasing": [
-        "Emphasize significance, innovation, approach, and expected outcomes."
-      ],
-      "tone": [
-        "Persuasive, confident, and reviewer-centric."
-      ],
-      "avoid": [
-        "Vague alignment statements without concrete criteria mapping.",
-        "Unverifiable claims or exaggerated impact language."
-      ]
     }
   },
   "writing_style": {
     "preferred_domains": [
       "Optical Communication"
-    ]
+    ],
+    "language": "chinese",
+    "data_source": "真实文献分析（24篇：18英文+6中文）",
+    "core_dna": {
+      "tone": "学术严谨、客观中立，使用hedging表达",
+      "chinese_sentence_pattern": "平均句长26.5字，偏好长句（39.9%），主动语态为主（被动句0例）",
+      "english_sentence_pattern": "平均句长14.1词，偏好短句（59.6%），主动语态为主"
+    },
+    "chinese_style": {
+      "dos": [
+        "使用主动语态：我们提出/实现/设计/研究...",
+        "使用hedging表达：结果表明/实验显示/数据提示",
+        "注入具体数值和技术参数",
+        "常用学术动词：研究（44次）、实现（38次）、提出（17次）、降低（14次）、提高（8次）",
+        "使用具体的技术术语而非泛泛而谈"
+      ],
+      "donts": [
+        "完全避免被动句式：被...所... / 由...所...",
+        "减少机械过渡词：因此/此外/另外",
+        "避免AI味词汇：深入探讨/错综复杂/见证/多维度的/助力/赋能",
+        "避免翻译腔：对于...来说/在...方面",
+        "避免绝对化结论：证明了/毫无疑问"
+      ],
+      "hedging_expressions": {
+        "实际使用": {
+          "表明": 6,
+          "结果表明": 4
+        },
+        "推荐使用": [
+          "结果表明",
+          "实验显示",
+          "数据提示",
+          "研究发现",
+          "可以推测",
+          "可能的原因是"
+        ]
+      },
+      "academic_verbs": {
+        "研究": 44,
+        "实现": 38,
+        "提出": 17,
+        "降低": 14,
+        "提高": 8,
+        "演示": 6,
+        "验证": 6,
+        "设计": 5
+      },
+      "statistics": {
+        "avg_sentence_length": 26.5,
+        "short_sentence_ratio": 29.8,
+        "medium_sentence_ratio": 30.3,
+        "long_sentence_ratio": 39.9,
+        "passive_voice_count": 0,
+        "first_person_usage": 1,
+        "technical_parameters": 47
+      }
+    },
+    "english_style": {
+      "dos": [
+        "使用第一人称复数 'We proposed...' 或 'We demonstrate...'",
+        "使用学术性hedging表达：These findings suggest / The data indicates",
+        "注入具体性：数字、方法约束与变量范围",
+        "变换句式节奏：关键结论用短句强调",
+        "常用学术动词：performance, improve, optimization, experimental, propose"
+      ],
+      "donts": [
+        "段首机械过渡词：Furthermore / Moreover / Additionally",
+        "夸张形容词：paramount / crucial / revolutionary / vital",
+        "绝对化结论：This proves that...",
+        "僵尸名词泛滥：perform an evaluation of",
+        "高频AI味词：delve / tapestry / testament / multifaceted"
+      ],
+      "statistics": {
+        "avg_sentence_length": 14.1,
+        "short_sentence_ratio": 59.6,
+        "medium_sentence_ratio": 26.2,
+        "long_sentence_ratio": 14.2,
+        "passive_voice_count": 102,
+        "active_voice_count": 361
+      }
+    }
+  },
+  "Optical Communication": {
+    "preferences": [
+      "使用第一人称复数表达研究贡献",
+      "使用hedging表达避免绝对化结论",
+      "注入具体数值和技术参数",
+      "变换句式节奏，关键结论用短句强调",
+      "数据驱动，引用具体技术指标"
+    ],
+    "phrasing": [
+      "我们提出/实现/设计...",
+      "结果表明/实验显示/数据提示...",
+      "提高了X dB / 降低了Y %",
+      "实现了X dB的功率预算"
+    ],
+    "tone": [
+      "学术严谨",
+      "客观中立",
+      "数据驱动"
+    ],
+    "avoid": [
+      "机械过渡词",
+      "夸张形容词",
+      "绝对化结论",
+      "AI味词汇",
+      "被动句式（中文）"
+    ],
+    "literature_count": {
+      "chinese": 6,
+      "english": 18,
+      "total": 24
+    }
+  },
+  "user_work": {
+    "primary_research": {
+      "title": "抗色散双偏振双二进制直接检测PON系统研究",
+      "priority": "HIGHEST",
+      "is_basis_for_thesis": true,
+      "research_focus": [
+        "双偏振双二进制调制",
+        "直接检测PON系统",
+        "色散容忍度提升",
+        "非线性效应抑制",
+        "功率预算优化"
+      ],
+      "writing_style_preference": "基于此论文的写作风格应作为主要参考",
+      "citation_instruction": "在相关主题写作中应优先引用此研究成果"
+    }
   }
 }

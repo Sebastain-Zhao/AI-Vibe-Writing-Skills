@@ -1,0 +1,209 @@
+# High-Speed IM DD Transmission Using Partial Response Signaling With Precoding and Memoryless Decoding - 引用上下文
+
+- **ID**: High-Speed_IM_DD_Transmission_Using_Partial_Response_Signaling_With_Precoding_and_Memoryless_Decoding
+- **引用文献数量**: 18
+
+---
+
+## [1] P . Kabal and S. Pasupathy, “Partial-response signaling,”IEEE Trans. Com- mun., vol. 23, no. 9, pp. 921–934, Sep. 1975, doi: 10.1109/TCOM.1975. 109291...
+
+**出现次数**: 3
+
+**引用上下文**:
+
+1. Partial response (PR) encoding deliberately violates this condition by inducing a short, con- trolled amount of ISI between data symbols, so that the signal spectrum becomes shaped due to this intersymbol correlation [1].
+
+2. However, the number of amplitude levels after PR encoding increases, resulting in reduced noise margins [1].
+
+3. The precoder generates M distinct output levels when M and b0 are coprime [1], with b0 being the constant term of the PR polyno- mial.
+
+---
+
+## [2] A. Lender, “Correlative digital communication techniques,” IEEE Trans. Commun. , vol. 12, no. 4, pp. 128–135, Dec. 1964, doi: 10. 1109/TCOM.1964.10889...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. For this reason, such modulation technique was initially known as correlative coding [2].
+
+---
+
+## [3] C. Bluemm et al., “800 Gb/s PAM4 transmission over 10 km SSMF enabled by low-complex duobinary neural network equalization,” in Proc. IEEE 48th Eur . ...
+
+**出现次数**: 2
+
+**引用上下文**:
+
+1. result in better signal quality [3], [4].
+
+2. In[3], pre-FEC BER was reduced by one order of magnitude by targeting a (1+D)-PAM-4 signal at the equalizer output compared to equalization targeting PAM-4 signal.
+
+---
+
+## [4] K. Zhang, Q. Zhuge, H. Xin, W. Hu, and D. V . Plant, “Performance comparison of DML, EML and MZM in dispersion-unmanaged short reach transmissions wit...
+
+**出现次数**: 2
+
+**引用上下文**:
+
+1. result in better signal quality [3], [4].
+
+2. I n [4], (1+D)-PAM-4 signal is adopted to overcome the power fading effect in an IM/DD system affected by chromatic dispersion.
+
+---
+
+## [5] R. Gutiérrez-Castrejón et al., “Systematic performance comparison of (Duobinary)-PAM-2,4 signaling under light and strong opto-electronic bandwidth co...
+
+**出现次数**: 2
+
+**引用上下文**:
+
+1. Moreover, PR signaling can reduce the required analog bandwidth when compared to a conventional pulse amplitude modulation (PAM) at the same symbol rate, hence increase the maximum symbol rate supported by the same analog bandwidth [5], [6], [7].
+
+2. , 3 dB or 10 dB) can be transmitted at a higher symbol rate than a conventional PAM [5].
+
+---
+
+## [6] M. S. Hossain et al., “Partial response O band EML transmission beyond 300-GBd with a 128/256 GSa/s DAC,” inProc. Opt. Fiber Commun. Conf., 2022, Pape...
+
+**出现次数**: 3
+
+**引用上下文**:
+
+1. Moreover, PR signaling can reduce the required analog bandwidth when compared to a conventional pulse amplitude modulation (PAM) at the same symbol rate, hence increase the maximum symbol rate supported by the same analog bandwidth [5], [6], [7].
+
+2. Moreover, a PR signaling with appropriate digital lowpass ﬁltering at transmitter can enable sampling rate to decrease below 1 sample/symbol (Sps), also referred to as faster-than-Nyquist (FTN) technique[6], [7], [14].
+
+3. Although the system was severely undersampled, the BER was below 2 ×10−2 [6].
+
+---
+
+## [7] D. Che and X. Chen, “Faster-than-Nyquist signaling up to 300 GBd PAM4 and 570 GBd OOK suitable for co-packaged optics,” in Proc. IEEE 47th Eur . Conf....
+
+**出现次数**: 3
+
+**引用上下文**:
+
+1. Moreover, PR signaling can reduce the required analog bandwidth when compared to a conventional pulse amplitude modulation (PAM) at the same symbol rate, hence increase the maximum symbol rate supported by the same analog bandwidth [5], [6], [7].
+
+2. Moreover, a PR signaling with appropriate digital lowpass ﬁltering at transmitter can enable sampling rate to decrease below 1 sample/symbol (Sps), also referred to as faster-than-Nyquist (FTN) technique[6], [7], [14].
+
+3. Another FTN paper[7] reported optical transmission of 570 GBd signal, where the effective bandwidth reduction was achieved by a noise whitening ﬁlter (which can be thought of as a generalized form of PR) before maximum likelihood sequence estimation (MLSE) decoder.
+
+---
+
+## [8] T. Rahman et al., “1.6Tb/s transmission feasibility employing IM/DD for datacentre networks,” inProc. 46th Eur . Conf. Opt. Commun., 2020, Paper Th1J-...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. In addition, it can improve transmitter output power, reducing amount of digital pre-emphasis required [8].
+
+---
+
+## [9] Q. Hu et al., “Ultrahigh-net-bitrate 363 Gbit/s PAM-8 and 279 Gbit/s polybinary optical transmission using plasmonic Mach-Zehnder modu- lator,” J. Lig...
+
+**出现次数**: 3
+
+**引用上下文**:
+
+1. In our previous papers, we studied the performance of polybi- nary signaling (PR encoding applied on PAM-2) [9], [10], [11].
+
+2. A special case is required for PAM-6 / PAM-12 signal, which is generated by mapping bits onto a two-dimensional QAM-32 / QAM-128 constellation on a 6×6/1 2×12 grid with respectively 4 or 16 corner points removed; the two dimensions are then time- interleaved to form a serialized signal and transmitted as optical intensity PAM [9].
+
+3. (e)–(h), using NGMI thresholds and corresponding FEC code rates in [9].
+
+---
+
+## [10] Q. Hu et al., “Plasmonic-MZM-based short-reach transmission up to 10 km supporting >304 GBd polybinary or 432 Gbit/s PAM-8 signaling,” in Proc. IEEE 4...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. In our previous papers, we studied the performance of polybi- nary signaling (PR encoding applied on PAM-2) [9], [10], [11].
+
+---
+
+## [11] R. Borkowski et al., “Experimental evaluation of PAM and polybi- nary modulation for intra-DCI optical lanes with up to 300 Gbit/s net bitrates,” in P...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. In our previous papers, we studied the performance of polybi- nary signaling (PR encoding applied on PAM-2) [9], [10], [11].
+
+---
+
+## [12] Q. Hu and R. Borkowski, “510 Gbit/s net bitrate IM/DD link enabled by 200 GBd precoded duooctonary (1 +D)-PAM-8 modulation with mem- oryless decoding,...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. This paper signiﬁcantly extends our previous work [12] by providing detailed analysis of the advantages of PR signal- ing.
+
+---
+
+## [13] K. Y onenaga and S. Kuwano, “Dispersion-tolerant optical transmission system using duobinary transmitter and binary receiver,” J. Lightw. Tech- nol., ...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. This is different from optical duobinary signaling [13], in which the three-level duobinary signal is modulated onto the optical amplitude, instead of intensity, and the modulo operation is effectively performed through direct detection on a square-law photodetector.
+
+---
+
+## [14] J. E. Mazo, “Faster-than-Nyquist signaling,” Bell Syst. Tech. J. , vol. 54, no. 8, pp. 1451–1462, Oct. 1975, doi: 10.1002/j.1538-7305. 1975.tb02043.x....
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. Moreover, a PR signaling with appropriate digital lowpass ﬁltering at transmitter can enable sampling rate to decrease below 1 sample/symbol (Sps), also referred to as faster-than-Nyquist (FTN) technique[6], [7], [14].
+
+---
+
+## [15] B. Sklar, “How I learned to love the trellis,” IEEE Signal Process. Mag. , vol. 20, no. 3, pp. 87–102, May 2003, doi: 10.1109/MSP .2003.1203212....
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. ) Trellis-Based Decoder: Decoding of signals affected by ISI can be performed based on a trellis diagram, wherein a convolutional encoder is represented by a sequence of state tran- sitions [15].
+
+---
+
+## [16] M. Tomlinson, “New automatic equaliser employing modulo arith- metic,” Electron. Lett. , vol. 7, no. 5, pp. 138–139, Mar. 1971, doi: 10.1049/el:197100...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. A general form of precoding was independently introduced by Tomlinson[16] as well as Harashima and Miyakawa[17], which is referred to as Tomlinson-Harashima precoding (THP).
+
+---
+
+## [17] H. Harashima and H. Miyakawa, “Matched-transmission technique for channels with intersymbol interference,” IEEE Trans. Commun., vol. 20, no. 4, pp. 77...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. A general form of precoding was independently introduced by Tomlinson[16] as well as Harashima and Miyakawa[17], which is referred to as Tomlinson-Harashima precoding (THP).
+
+---
+
+## [18] Y . Zhu and K. B. Letaief, “Frequency domain equalization with Tomlinson- Harashima precoding for single carrier broadband MIMO systems,” IEEE Trans. ...
+
+**出现次数**: 1
+
+**引用上下文**:
+
+1. (ii) The precoder in THP systems is optimized according to ISI and SNR of a speciﬁc system [18]; it is thus not universal and requires feedback.
+
+---
+

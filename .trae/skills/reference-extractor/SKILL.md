@@ -1,11 +1,18 @@
 ---
 name: "reference-extractor"
-description: "Extracts references from PDF documents and from papers in reference_library.json. Also extracts citation contexts showing where references are cited in the text. Invoke when user needs to find and collect references from research papers, read references from existing literature in reference_library, or extract citation contexts."
+description: "Extracts references from PDF documents and from papers in reference_library.json. Also extracts citation contexts showing where references are cited in the text. Invoke when user needs to find and collect references from research papers, read references from existing literature in reference_library, or extract citation contexts. Also works in pipeline with pdf-reader skill: first read literature with pdf-reader, then extract references and citation contexts with this skill."
 ---
 
 # Reference Extractor Skill
 
 This skill extracts references from PDF research papers by reading the end sections where references are typically located. It can also extract references from papers already stored in reference_library.json, and extract citation contexts showing where each reference is cited in the text.
+
+## Complete Workflow Pipeline
+
+This skill works best in conjunction with the `pdf-reader` skill:
+
+1. **First**: Use `pdf-reader` skill to read PDF literature and store in `reference_library.json`
+2. **Then**: Use this `reference-extractor` skill to extract references and citation contexts from the stored literature
 
 ## Key Features
 
@@ -26,8 +33,18 @@ This skill extracts references from PDF research papers by reading the end secti
 - When verifying the accuracy of citations in a document
 - **When user says "读取reference_library下文献的参考文献" or similar phrases** - extract references from papers in reference_library.json
 - **When user says "读取reference_library下文献的引用上下文" or "保留引用的那一句话" or similar phrases** - extract citation contexts showing where references are cited
+- **When user says "进行提取操作" or similar phrases** - execute the complete extraction workflow
+- **When user says "完整提取" or "完整工作流" or similar phrases** - run complete_extraction_workflow.py for the full pipeline
 
 ## Workflow
+
+### Complete Workflow (Recommended)
+First read literature with pdf-reader, then extract references and citation contexts:
+
+1. **Step 1**: Use pdf-reader skill to read PDF literature and store in reference_library.json
+2. **Step 2**: Extract references from papers in reference_library.json
+3. **Step 3**: Extract citation contexts from papers in reference_library.json
+4. **Step 4**: All data is saved in reference_library.json
 
 ### Scenario 1: Extract from PDF files directly
 1. **Input**: PDF files containing research papers
@@ -39,7 +56,7 @@ This skill extracts references from PDF research papers by reading the end secti
 4. **Extraction**: Extract all references from the identified section, handling multi-line references
 5. **Output**: Return the extracted references in a structured format, organized by source document
 
-### Scenario 2: Extract from reference_library.json
+### Scenario 2: Extract references from reference_library.json
 1. **Input**: Load reference_library.json
 2. **Processing**: For each paper in the library, read its PDF file and extract references
 3. **Extraction**: Use the same reference detection methods as Scenario 1
@@ -51,8 +68,9 @@ This skill extracts references from PDF research papers by reading the end secti
 2. **Processing**: For each paper in the library, read its PDF file and search for citation markers [1], [2], etc.
 3. **Context Extraction**: 
    - Skip the reference section to avoid extracting from the bibliography
-   - For each citation marker found in the main text, extract the surrounding sentences
+   - For each citation marker found in the main text, extract the surrounding sentences (from previous period to next period)
    - Handle multiple occurrences of the same citation
+   - Clean up the sentences (remove page numbers, replace newlines with spaces, normalize whitespace)
 4. **Storage**: Save the extracted citation contexts back to each paper's entry in reference_library.json under the "citation_contexts" field
 5. **Output**: Display summary of extracted citation contexts and occurrences
 
@@ -71,9 +89,33 @@ The skill uses Python with the `pypdf` library to extract text from PDF files, t
 
 ## Example Usage
 
-### Extract references from a single PDF:
+### Complete Pipeline (Recommended):
+Run the complete workflow in one step:
 ```
-python parse_pdf.py "path/to/paper.pdf" | tail -n 300
+python complete_extraction_workflow.py
+```
+
+This will:
+1. Update reference_library.json from the literature folder
+2. Extract references from all papers
+3. Extract citation contexts from all papers
+
+### Step-by-Step Pipeline:
+If you prefer to run each step individually:
+
+#### Step 1: Update reference_library.json
+```
+python process_literature.py
+```
+
+#### Step 2: Extract references from papers in reference_library.json:
+```
+python extract_and_save_references.py
+```
+
+#### Step 3: Extract citation contexts from papers in reference_library.json:
+```
+python extract_citation_contexts.py
 ```
 
 ### Extract references from all PDFs in a folder:
@@ -81,14 +123,9 @@ python parse_pdf.py "path/to/paper.pdf" | tail -n 300
 python extract_all_references.py
 ```
 
-### Extract references from papers in reference_library.json:
+### Extract references from a single PDF:
 ```
-python extract_and_save_references.py
-```
-
-### Extract citation contexts from papers in reference_library.json:
-```
-python extract_citation_contexts.py
+python parse_pdf.py "path/to/paper.pdf" | tail -n 300
 ```
 
 ### Output Format
@@ -117,11 +154,14 @@ Example structure in reference_library.json:
 {
   "citation_contexts": {
     "1": [
-      "ITU-T and IEEE [1], [2], [3]."
+      "Nowadays, 50G-PON has been standardized by ITU-T and IEEE [1], [2], [3]."
+    ],
+    "11": [
+      "The main challenges for high-speed IM/DD PON system are bandwidth limitation, channel impairments and low receiver sensitivity, which means that it is hard to meet the performance requirement such as an optical power budget of at least 29 dB [11], [12]."
     ],
     "14": [
-      "[14], [15], [16], [17], [18], [19], [20], [21], [22], [23], [24],",
-      "channel [14], [15], [16], [17], [18]."
+      "In recent years, as the in-depth research of machine learning technique in optical communication systems, end-to-end learning has earned a lot of attention and is regarded as a promising way to improve the overall system performance [13], [14], [15], [16], [17], [18], [19], [20], [21], [22], [23], [24], [25].",
+      "Some studies directly use theoretical formulas or known numerical models of real physical channel to construct differentiable channel [14], [15], [16], [17], [18]."
     ]
   }
 }
