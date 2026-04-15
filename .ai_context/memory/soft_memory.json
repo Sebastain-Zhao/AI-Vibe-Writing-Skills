@@ -179,6 +179,30 @@
       ],
       "writing_style_preference": "基于此论文的写作风格应作为主要参考",
       "citation_instruction": "在相关主题写作中应优先引用此研究成果"
+    },
+    "writing_samples": {
+      "2.1.2_IMDD系统模型": {
+        "style_features": {
+          "structure": "分段落讨论：背景引入→发射端→信道→接收端→数学模型→物理意义→性能边界",
+          "formula_presentation": "数学公式逐步展开，从复振幅形式到强度信息，每步都有物理意义解释",
+          "parameter_explanation": "参数解释详尽，包含单位、典型值范围、物理含义",
+          "physical_insight": "不仅给出公式，还从相位抵消角度解释IM/DD系统的根本局限",
+          "transition_style": "使用逻辑衔接而非过渡词，如'这一物理过程'、'上述公式的展开过程极其清晰地揭示了'",
+          "practical_context": "结合实验室测试和现网部署的实际经验"
+        },
+        "key_phrases": [
+          "根源在于其实现简单、成本低廉且技术成熟",
+          "这一过程可抽象为",
+          "上述公式的展开过程极其清晰地揭示了",
+          "这一硬件特性决定了IM/DD系统的两大根本局限",
+          "实验室测试和现网部署的经验均表明"
+        ],
+        "formula_style": {
+          "expansion_method": "逐步展开，从y(t)=R·|E(t)|²+n(t)展开到R·A²(t)+n(t)",
+          "phase_cancellation": "通过共轭相乘展示相位抵消过程",
+          "insight_extraction": "从数学推导中提取物理意义，解释系统局限"
+        }
+      }
     }
   }
 }

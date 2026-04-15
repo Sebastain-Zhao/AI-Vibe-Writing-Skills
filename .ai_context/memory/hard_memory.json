@@ -36,6 +36,10 @@
         {
           "term": "Markdown格式限制",
           "definition": "生成的文字不要有加粗、斜体，没有其他格式，除了标题的#"
+        },
+        {
+          "term": "破折号限制",
+          "definition": "生成的段落中禁止使用破折号（——或-），使用逗号、句号或其他句式结构调整来替代"
         }
       ],
       "units": [],
@@ -175,7 +179,16 @@
       "order",
       "introduction",
       "coexistence",
-      "keywords"
+      "keywords",
+      "ODB (Optical Duobinary)"
+    ],
+    "units": [
+      {
+        "unit": "Data Rate",
+        "standard": "Gbps",
+        "variants": ["Gbit/s", "Gb/s"],
+        "note": "统一使用Gbps表示数据传输速率"
+      }
     ],
     "facts": [
       {
