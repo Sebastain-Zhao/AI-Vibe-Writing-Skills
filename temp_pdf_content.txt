@@ -1,0 +1,544 @@
+
+=== 第1页 ===
+通信作者：*zhengxuanli@shu.edu.cn 
+具有抗色散性能的高频谱效率双偏振光双二进制直
+接检测PON 
+赵璋路，李正璇*，骆思雨，宋英雄 
+上海大学特种光纤与光接入网重点实验室，上海 200444； 
+ 
+摘 要 无源光网络（PON）的大规模部署对链路损耗预算提出了严苛要求，尤其是强度调
+制直接检测（IM/DD）PON。在长距离场景中受制于光纤色散带来的损伤；在高发射功率下
+受制于受激布里渊散射（SBS）等光纤非线性效应影响。本文提出一种基于偏振复用光双二
+进制（DP-ODB）发射架构，在色散与功率两个维度拓展链路预算。ODB 信号相比PAM4 有显
+著的色散优势和鲁棒性。此外，进一步将信号放到两个正交的偏振分量上，降低单个支路
+的功率，从而将系统SBS 非线性容忍上限由PAM4 的7 dBm 提升至16 dBm，增幅达9 dB。
+在发射功率超过10 dBm 的工况下，链路损耗预算在42.5 ps/nm 色散处可达33 dB，在170 
+ps/nm 色散处仍保持29 dB。实验还验证了50 GBaud 条件下的初步可行性，表明所提方案
+在迈向100G IM/DD PON 中具有显著潜力。 
+关键词 无源光网络；光双二进制；偏振复用；光纤非线性 
+中图分类号O436    文献标志码 A 
+1 引  言 
+随着接入网与短距网络的流量快速扩张，业界正将单波长PON 数据速率从25 Gbps 向
+50 Gbps 和100 Gbps 推进。ITU-T 与IEEE 已完成50G-PON 标准化
+[1-3]，该物理层保留了强度
+调制直接检测（IM/DD）架构，于此类系统中首次引入了数字信号处理
+[4]。与此同时，100G-
+PON 的标准化进程仍在推进中，其关键技术正处于广泛研究阶段
+[5-7]。相干技术虽能以大功率
+预算与高色散容忍能力带来明显的性能优势
+[8-10]，但其成本、功耗和复杂度，尤其是光网络
+单元（ONU）侧的要求与PON 标准不符。因此在IM/DD 技术的前提下，进一步探索实现单波
+长100 Gbps PON 的有效途径具有重要意义
+[11]。 
+高速IM/DD PON 面临的主要挑战包括带宽受限、信道损伤和功率预算受限三个方面
+[12]。
+由于高带宽光器件的发展总是滞后于数据速率的演进，因此问题转为如何提高频谱效率，高
+阶调制格式被纳入考虑范围，但对器件的线性度有硬性要求
+[13]。色散（CD）也需要重点考量。
+常规下行链路采用1342 nm 波长来降低色散带来的功率损失，然而50G PON 下行链路波长
+与EPON 存在冲突
+[14]，在波长向更长波段偏移时，色散系数上升导致的功率预算代价需要重
+新评估。为了减轻色散的影响，接收机例如Kramers–Kronig（KK）接收机
+[15]和多种均衡等
+多方向上的技术相继被引入。然而，KK 接收机依赖高载波功率，会牺牲信噪比（SNR）和线
+性度；新兴的神经网络（NN）均衡器的研究则需要解决复杂度
+[16]与数据标注问题
+[17]。面对功
+
+
+=== 第2页 ===
+率预算受限的问题，提高光发射功率是直接而有效的，但该策略从根本上受到光纤非线性效
+应的约束。当光发射功率超过约10 dBm 时，受激布里渊散射（SBS）成为主要的非线性损伤
+[18, 19]。由于SBS 具有极窄的增益带宽，因此对PAM4 格外不利，且PAM4 的光载波未被抑制，
+高功率集中于窄谱区，SBS 阈值因而较低。NN 均衡器可以将发射功率提高至18 dBm，最终
+实现了30 dB 的损耗预算，但代价是大量乘法运算带来的高计算开销
+[6]。 
+光双二进制（ODB，Optical Duobinary）调制凭借双二进制编码和0 
+−
+相位交替特性,
+在带宽受限、色散和非线性三个方面均表现出较强的鲁棒性。此外，ODB 信号可由直接检测
+接收机接收，在商用化进程中能与现有光分配网（ODN）共存
+[20]。已经有许多文献验证了这
+一优势：将ODB 与雪崩光电探测器结合，利用低复杂度的均衡实现了38 dB 的功率预算
+[21]；
+使用高阶部分响应编码器在无色散场景下实现了高达510 Gbps 的净比特率
+[22]。然而，ODB
+作为一种二进制编码，本质上频谱效率仍为1 bit/s/Hz。 
+本文通过拓展ODB 信号的偏振维度将传输容量翻倍，同时保留ODB 格式的带宽压缩特
+性与色散容忍能力。通过将两路偏振功率控制为2∶1，双偏振信号也仅由单个光电探测器
+（PD）接收并转化为4 电平信号，无需额外的90°光混频器和平衡探测器，降低了ONU 侧
+的复杂度与成本。此外，将光信号分散于两个偏振态上，衰减单个偏振方向上的发射功率，
+有效抑制了光纤非线性损伤，从而提高总发射功率。与PAM4 相比，本方案所需的均衡抽头
+数也更少。 
+2 基本原理 
+2.1  光双二进制抗码间串扰性能 
+在带宽受限的通信链路中，部分响应信号是压缩频谱的一种常见技术，其中双二进制属
+于第一类 (1
+)
+D
++
+ 的实现形式
+[22]。通过人为引入可控的码间串扰（ISI）来重塑信道的记忆
+特性，可以等效为一个离散时间低通滤波器，该响应用数学模型表示为
+1
+( )
+1
+H z
+z−
+= +
+。如
+图1（a）所示，双二进制编码主要由一个异或预编码器和一个延迟相加组件串联而成，可写
+为： 
+1
+k
+k
+k
+b
+a
+b −
+=
+
+                          （1） 
+1
+k
+k
+k
+c
+b
+b −
+=
++
+                          （2） 
+
+
+=== 第3页 ===
+其中， ,
+k
+k
+a b  与 
+kc  分别表示输入信号，预编码信号和双二进制输出，表示异或。
+等式（1）是预编码；等式（2）是 
+( )
+H z  的具体实现形式。电域二进制信号驱动零偏置点
+的双驱动马赫-曾德尔调制器（DD-MZM），产生三电平ODB 光信号：−E、0 和+E。光电探测
+器随后执行平方律检波，实现ODB 接收的无记忆解码，将光域三电平信号转换为电域两电
+平信号以供判决。作为一项成熟技术，光双二进制通过其编码格式，对相位翻转引起的瞬态
+变化进行抑制，如图1（b）所示，相位反转特征确保了处于”+E”和”-E”状态的脉冲之间总是
+被”0”隔开的过零特性，这些脉冲展宽的尾部会在”0”时隙处发生相消干涉，抑制了能量向相
+邻电平的泄漏，有效减轻了码间串扰导致的眼图闭合，尤其是杜绝了NRZ 码型中”1 0 1”受到
+码间串扰最严重的组合。其次，过零特性抑制了高频，从而实现了显著的频谱压缩，如图2
+（a）所示，ODB 信号的频谱宽度被压缩至传统不归零（NRZ）信号的一半。然而，尽管频谱
+变窄，ODB 信号仍保持1 比特/符号的传输效率，这意味着其符号率与传统NRZ 信号完全相
+等。 
+ 
+图1 （a） 光双二进制编码流程 （b）NRZ 和 ODB 码间串扰对比 
+Fig. 1 (a) ODB encoding. (b) Comparison of ISI between NRZ and ODB. 
+2.2  结合偏振复用的信道性能提升 
+为了进一步提高系统吞吐量，我们将ODB 信号扩展至偏振维度，且仍保持单PD 的接收
+结构。出于光电探测器的偏振不敏感特性
+[23]，通过对正交偏振态的光进行2：1 的非相干叠
+加，从而在接收端获得一个四电平的强度调制信号。具体而言，如图2（b）所示，我们将水
+
+
+=== 第4页 ===
+平偏振（x）设置为标准ODB 信号，而垂直偏振信号（y）的功率相对于另一路衰减3 dB，从
+而形成2:1 的功率比，探测器接收到的总光强为两路信号的标量之和： 
+( )
+( )
+( )
+( )
+( )
+0.5
+total
+x
+y
+ODB
+ODB
+I
+t
+P t
+P t
+P
+t
+P
+t
+
+=
++
+=
++
+            （3） 
+由于每个偏振分支都具备ODB 编码的特性，最终合成的四电平信号依然能够抗串扰。如
+图2(c)所示，在严重的码间干扰环境下，双偏振光双二进制（DP-ODB）的眼图在判决点依然
+清晰张开，而PAM4 信号的眼图则呈现闭合状态。 
+ 
+图2 （a）ODB 和PAM4 在偏振态上的光谱（b）DP-ODB 系统原理 
+（c）DP-ODB 与PAM4 眼图示意图 
+Fig. 2 (a) Optical spectra of ODB and PAM4 (b) Principle of DP-ODB (c) Eye diagram of DP-ODB and PAM4. 
+所提出的系统中，除了ODB 本身能够有效缓解线性色散和码间串扰外，加入的双偏振配
+置在管理光功率方面也发挥关键作用，直接影响系统的非线性容忍能力。随着发射光功率提
+升，最先显现的非线性损伤是SBS。由于SBS 对偏振不敏感
+[24]，非线性容限主要取决于每路
+偏振的功率，而非总发射功率。一旦突破SBS 阈值，其引发的后向散射功率会导致系统误码
+率（BER）指数级上升
+[25]。将信号分配至两个正交的偏振分支可使每路功率保持在强增益区
+以下，提供额外的功率预算。此外，如图2(a)所示，ODB 通常呈现载波抑制频谱；与PAM4
+携带强残余载波、光功率集中于载波频率附近不同，无载波的ODB 降低了峰值功率集中度，
+这一频谱特性使ODB 在本质上比PAM4 具有更强的非线性容忍能力。 
+3 光纤传输实验系统 
+3.1  实验系统搭建 
+本文所提出的通信系统如图3 所示。DP-ODB 系统的实验装置采用92 GSa/s 的任意波形
+
+
+=== 第5页 ===
+发生器（AWG， Keysight M8196A）。两路AWG 输出的幅度设置为176 mV，经23 dB 电放大
+器放大后，驱动带宽25 GHz 的双驱动马赫曾德尔调制器（FTM7937）进行调制。为构建DP-
+ODB，调制后的光输出经50∶50 光纤耦合器一分为二：X 分支延迟20 个符号以对两路数据
+去相关；Y 分支衰减3 dB 以实现2∶1 功率比；两路经偏振控制器分别对准正交偏振态（X
+与Y），由偏振合束器（PBC）合并后注入光纤。发射端虽然增加了PBC 和延时等器件，但是
+换来了接收端单PD 检测的实现。在接收端，掺铒光纤放大器（EDFA）前置放大器之后接续
+一个35 GHz 带宽的PIN 探测器。波形由160 GSa/s、33 GHz 采样示波器采集，后续进行离
+线DSP 处理。 
+ 
+图3 DP-ODB 系统结构实验装置图 
+Fig. 3 Experiment setup of the DP-ODB system. 
+3.2  实验结果与讨论 
+为了验证所提出系统在抑制色散方面和在提升非线性阈值的优势，本文开展了系统性的
+传输实验。在接收端数字信号处理（DSP）流程中，为了进一步补偿实际高速链路中残余的
+带限与色散损伤，本文首先分别对DP-ODB 和PAM4 的数字均衡配置进行了独立优化，并将所
+得最佳配置固定为后续实验的统一基准。 
+如图4 所示，本文对40 GBaud PAM4 和DP-ODB 信号进行了对比。在各格式达到
+2
+1.0 10−
+
+FEC 门限之前的最大累积色散处进行评估（PAM4 为127.5 ps/nm，DP-ODB 为170 ps/nm）。
+横轴为前馈均衡器（FFE）抽头数，各曲线对应特定均衡配置，例如"1/3"表示1 个DFE 抽头
+和3 个二阶Volterra 抽头。 
+对于PAM4，在接近色散极限处满足
+2
+1.0 10−
+
+门限具有较大挑战，在图4（a）中，只有
+具备5 个VOL 二阶抽头的均衡器配置可以满足门限，与图例中圈出。其中FFE-25/DFE-0/Vol-
+5 的DFE 抽头数最少，被指定为PAM4 参考配置。相比之下，DP-ODB 提供了更大的色散裕量，
+表现为仅有图1（b）中两种均衡器配置不满足要求。FFE+DFE 的均衡已覆盖主要失真分量，
+
+
+=== 第6页 ===
+额外VOL 抽头可以换来BER 更早的下降和更低的误码率，Vol-3 在25 个FFE 抽头时将BER
+降至2.56×10⁻³。综合复杂度与性能考量，选定FFE-25/DFE-3/Vol-0 为参考配置。上述结
+果证实，DP-ODB在无需高复杂度Volterra均衡的情况下，对累积色散的容忍能力优于PAM4。 
+ 
+图4 DP-ODB 和PAM4 在不同均衡器配置下的误码率 
+Fig. 4 BER performance of PAM4 and DP-ODB with different equalizer configurations 
+确立了参考配置后，我们还需要将其置于更广泛的传输场景中进行检验。设置信号在不
+同光纤长度下的恶化情况，本文进一步对比了二者的动态色散容限。如图5 所示，在接收功
+率为−5 dBm 的条件下对BER 与累积色散的关系进行了对比。在0 ps/nm 时，DP-ODB 格式因
+相关编码引入了ISI 而带来误码率损失；然而，随着信号在光纤中传播，色散开始发挥补偿
+作用，系统在42.5 ps/nm 累积色散处达到性能峰值，光双二进制带来的相消特性有效减轻
+了色散导致所引入的ISI，使DP-ODB BER 恢复至PAM4 背靠背（btb）基线水平。超过该最
+优点后，DP-ODB 相对于PAM4 持续保持性能优势。PAM4 的信号质量始终随色散增加而恶化，
+在127.5 ps/nm 后低于FEC 门限。DP-ODB 将累积色散容限提高至170 ps/nm 以上，意味着
+在短距链路中可显著减少色散补偿需求，提升传输距离。在图5 的右侧为102 ps/nm 累计色
+散下两种码型均衡后的眼图，如图5（i）所示，PAM4 垂直方向上四个电平轨迹已经出现明
+显展宽，导致眼图在最佳抽样时刻的噪声容限大幅下降。这种恶化使得在实际接收判决时，
+微小的干扰就容易导致相邻电平的混淆。在水平方向上，ISI 加剧了过零点失真，进一步收
+窄了最宽“眼睛”处的有效采样窗口。而图5（ii）的DP-ODB 的眼图结构呈现出明显改善：
+轨迹更加收敛、线条边缘相对锐利、各个电平之间的跳变轨迹以更加紧凑的路径穿过中心交
+汇点，直观的证实了DP-ODB 中的ISI 得到了更好的控制。 
+在我们的实验中，器件带宽的限制将主要演示局限于40 GBaud。在图5 中，为了探究
+
+
+=== 第7页 ===
+100 Gbps 演进的可扩展性，我们也评估了50 GBaud 性能，在背靠背场景下已经受到严重的
+带限作用而难以实现低BER 基底，但系统呈现出与40 GBaud 情形相同的特征趋势：在经过
+17 ps/nm 传输后接收灵敏度改善，随后在长距离时逐渐升高。可以推测在更高速率下所提
+机制的可行性，表明在具备稍微宽容器件带宽的条件下，100 Gbps 操作是可行的。50 GBaud 
+PAM4 信号即便在背靠背场景下亦无法建立有效链路，说明其已达到信道容量的物理极限。 
+ 
+图5 累计色散量与误码率图和眼图 （i）PAM4 （ii）DP-ODB 
+Fig. 5 BER vs. Accumulated CD, and eye diagram for (i) PAM4 and (ii) DP-ODB. 
+明确了累积色散对信号畸变的影响规律后，评价系统鲁棒性的另一个核心维度在于其在
+低信噪比下的恢复能力。回到接收功率层面，重点考察PAM4 和DP-ODB 在特定色散条件下的
+灵敏度极限。如图6（a）所示，在各自最优工作点对两种格式的接收灵敏度进行了评估。
+PAM4 在背靠背场景下表征本征收发机性能；DP-ODB 的评估聚焦于42.5 ps/nm 累积色散和
+较高的170 ps/nm 两处。"Balanced"与"Best"分别对应前述讨论中的特定均衡配置：DP-ODB
+采用FFE-25/DFE-3/Vol-0 与FFE-25/DFE-3/Vol-5，PAM4 采用FFE-25/DFE-0/Vol-5 与FFE-
+25/DFE-3/Vol-7。 
+在图5 的讨论中，位于最优工作点的高SNR 区，两种格式呈现相似的性能趋势；然而在
+低接收灵敏度处，两者存在明显差异。PAM4 在背靠背条件下的灵敏度约为−20 dBm，而DP-
+ODB 在42.5 ps/nm 处达到−23 dBm，具有3 dB 优势，这同样源于ODB 在判决时刻带来的相
+消作用，从而在低SNR 区域最小化判决错误。值得注意的是，DP-ODB 在显著更高的色散条
+件下仍维持可行的灵敏度：在170 ps/nm 处，接收灵敏度保持在−19 dBm 附近，相对于42.5 
+ps/nm 时的灵敏度代价约为4 dB，相对于PAM4 背靠背基线的代价仅为1 dB。这表明DP-ODB
+在其色散耐受度之内，性能劣化依然温和，证实了DP-ODB 通过抑制色散失真而表现出的优
+异ISI 容忍能力。 
+如图6(b)所示，采用相同均衡配置对50 GBaud DP-ODB 在17 ps/nm 处进行了测试，接
+收灵敏度为−19 dBm，严重的带宽限制削弱了ISI 抵抗能力。这一性能下降归因于带宽限制
+
+
+=== 第8页 ===
+与色散的共同作用，破坏了ODB 解调所需的部分响应相关性。 
+ 
+图6 （a）40G DP-ODB 与 PAM4 （b）50G DP-ODB 在不同均衡器下的接收机灵敏度 
+Fig. 6 A comparison of receiver sensitivity across different equalizer settings for (a) 40G DP-ODB vs.PAM4, and 
+(b) 50G DP-ODB. 
+在前文中，已经充分验证了各格式在对抗色散等线性损伤的性能界限，下文将研究重点
+转入高入纤功率导致的非线性效应。在第二章中提到，SBS 在双偏振下具有优势，直接对单
+偏振PAM4 与双偏振ODB 进行比较，难以区分是调制格式还是偏振分流带来的优势。为了补
+全这一缺失的对比维度，本研究引入了DP-NRZ 作为中间基准。如图7 所示，针对PAM4、DP-
+NRZ 与DP-ODB 三种调制格式的非线性抗性展开了深入探讨。由于实验主链路的物理长度受
+限，难以积累充分的非线性效应，本研究引入修改后的传输配置进行仿真研究。将光纤跨距
+设置为20 km 以强化SBS 非线性效应，色散系数设为5 ps/(nm
+m)
+k
+
+,色散斜率设为0.5 
+2
+ps/(nm
+)
+km
+
+，在接收端控制接收光功率为-5 dBm。为客观评估上述三种格式在非线性受
+损条件下的表现，仅采用FFE 均衡器进行补偿。 
+对比图7 中DP-NRZ 与PAM4 的误码率走势，在低入纤功率区间，DP-NRZ 在系统恢复后
+的噪声分量较大
+[26]，PAM4 因只有单一偏振上的噪声，展现出更低的误码率基线。然而随着
+入纤功率增长，在3 dBm 后快速上升，在7 dBm 处到达门限阈值；而DP-NRZ 在6 dBm 才开
+始上升，并在9 dBm 时到达门限，这也初步印证了双偏振能够提高非线性阈值。 
+结合眼图特征来看，如图7（i）所示,SBS 由于最先作用于PAM4 信号承载最高功率的电
+平，出现严重的幅度和相位噪声，导致其在水平和垂直幅度上大幅扩散，最上方的“眼睛”
+已呈趋于闭合。观察图7（ii）中，DP-NRZ 的眼图中最先闭合的是其中间的“眼睛”，这是
+因为高功率的分支先突破了SBS 阈值而发生严重的功率衰减；而低功率的分支则相对稳定。
+
+
+=== 第9页 ===
+这种非对称的功率演变直接打破了系统预设的 2:1 功率配比，促使信号整体形态向三电平
+退化。从而从侧面佐证了SBS 效应的激发本质上独立于信号的偏振状态。 
+DP-ODB 采用FFE 配置时，误码率在16 dBm 发射功率范围内持续低于
+2
+1.0 10−
+
+门限，而
+此区间内出纤功率随入纤光功率保持线性增长。这一优势源于ODB 在频谱中抑制了高功率
+的光载波，大幅提高了SBS 阈值。据此推论，在DP-ODB 系统中，主导高功率误码率攀升的
+核心机制并非SBS，而是自相位调制（SPM）等其他非线性效应。与调制格式结构相关：SPM
+导致的非线性相移干扰了ODB 解调所依赖的精确0 
+−
+相位交替。 
+ 
+图7 误码率随发射功率变化曲线和眼图（i）PAM4 （ii）DP-NRZ （iii）DP-ODB 
+Fig. 7 BER versus launch power, and corresponding eye diagrams for (i) PAM4, (ii) DP-NRZ, and (iii) DP-ODB. 
+在本文所提出的结构中，当发射功率超过10 dBm 时，结合前文所述−23 dBm 灵敏度可
+实现33 dB（超过GPON Class C+ 标准 32 dB）的总链路损耗预算，结合−19 dBm 灵敏度可
+实现29 dB（GPON Class B+ 标准 29 dB）预算，证明了所提系统在PON 中的可行性及其对
+链路损耗预算的适用性。本实验中，EDFA 用作前置放大器，采用具有高接收灵敏度的光电
+雪崩二极管和跨阻放大器或者半导体光放大器（SOA）是两种更为高效理想的实现途径。对
+于实际应用中，DP-ODB 系统相比强度调制PAM4 需要更复杂的发射机结构，但在PON 下行链
+路场景中，结构简单的ONU 具有良好的经济可行性，且本方法与上一代PON 设备具有兼容
+性，以便实现平滑的“按需拓展”网络升级。后续工作将进一步提升现有系统的链路损耗预
+算，以期在未来实现更低成本与复杂度。 
+ 
+
+
+=== 第10页 ===
+4 结  论 
+本文提出了一种双偏振双二进制系统，能够缓解直接检测PON 中的码间串扰与非线性
+失真。通过将发复杂度转移至发射端，本方案实现了算法资源需求较低的简单直接检测接收
+机，并确保与现有ONU 的兼容性。与PAM4 相比，DP-ODB 格式在高SNR 下表现相当，但在低
+SNR场景下，尤其是高累积色散条件下对码间串扰鲁棒性显著更强。实验验证了在42.5 ps/nm
+累积色散处达到−23 dBm 的接收灵敏度，在170 ps/nm 处达到−19 dBm。此外，本文测试了
+对SBS 的容忍度，最后得出当发射功率超过10 dBm 时，分别实现了33 dB 和29 dB 的功率
+预算，证实了该方案在PON 系统中的可行性。 
+ 
+参考文献 
+[1] 
+Bonk R, Geng D, Khotimsky D, et al. 50G-PON: The First ITU-T Higher-Speed PON System [J]. 
+IEEE Communications Magazine, 2022, 60(3): 48-54. 
+[2] 
+Zhang D, Liu D, Wu X, et al. Progress of ITU-T higher speed passive optical network (50G-PON) 
+standardization [J]. Journal of Optical Communications and Networking, 2020, 12(10): D99-
+D108. 
+[3] 
+Knittle C. IEEE 50 Gb/s EPON (50G-EPON); proceedings of the Optical Fiber Communication 
+Conference (OFC), San Diego, California, F 2020/03/08, 2020 [C]. Optica Publishing Group. 
+[4] 
+Li B, Zhang K, Zhang D, et al. DSP enabled next generation 50G TDM-PON [J]. Journal of 
+Optical Communications and Networking, 2020, 12(9): D1-D8. 
+[5] 
+Saber M G, Gutiérrez-Castrejón R, Alam M S, et al. 100 Gb/s/λ Duo-Binary PAM-4 
+Transmission Using 25G Components Achieving 50 km Reach [J]. IEEE Photonics Technology 
+Letters, 2020, 32(3): 138-141. 
+[6] 
+Yi L, Liao T, Huang L, et al. Machine Learning for 100 Gb/s/λ Passive Optical Network [J]. 
+Journal of Lightwave Technology, 2019, 37(6): 1621-1630. 
+[7] 
+Ji H, Yi L, Li Z, et al. Field Demonstration of a Real-Time 100-Gb/s PON Based on 10G-Class 
+Optical Devices [J]. Journal of Lightwave Technology, 2017, 35(10): 1914-1921. 
+[8] 
+Xing S, Zhang J, Shen W, et al. Low-cost, large-coverage, and high-flexibility coherent PON for 
+next-generation access networks: advances, challenges, and prospects [J]. Chinese Optics 
+Letters, 2024, 22(4): 040604. 
+[9] 
+Wu Q, Zhu Y, Cheng Z, et al. Spectrally sliced heterodyne coherent receiver with halved 
+electrical bandwidth [J]. Chinese Optics Letters, 2022, 20(9). 
+[10] 
+Zhang J, Jia Z. Coherent Passive Optical Networks for 100G/λ-and-Beyond Fiber Access: 
+Recent Progress and Outlook [J]. IEEE Network, 2022, 36(2): 116-123. 
+[11] 
+Houtsma V, Mahadevan A, Kaneda N, et al. Transceiver technologies for passive optical 
+networks: past, present, and future [J]. Journal of Optical Communications and Networking, 
+2021, 13(1): A44-A55. 
+[12] 
+Houtsma V, Veen D V. Optical Strategies for Economical Next Generation 50 and 100G PON; 
+proceedings of the Optical Fiber Communications Conference and Exhibition (OFC), F 3-7 
+
+
+=== 第11页 ===
+March 2019, 2019 [C]. 
+[13] 
+Honglin Ji H J, Lilin Yi L Y, Lei Xue L X, et al. Upstream dispersion management of 25 Gb/s 
+duobinary and PAM-4 signals to support 0–40 km differential reach [J]. Chinese Optics 
+Letters, 2017, 15(2): 022502-022506. 
+[14] 
+Saliou F, Simon G, Le Huérou S, et al. Coexistence in future optical access networks from an 
+operator's perspective [J]. Journal of Optical Communications and Networking, 2024, 16(1): 
+A78-A88. 
+[15] 
+Mecozzi A, Antonelli C, Shtaif M. Kramers–Kronig coherent receiver [J]. Optica, 2016, 3(11): 
+1220-1227. 
+[16] 
+孙雨潼, 毕美华, 习雨, et al. 用于带限DML-IMDD 系统中的深度神经网络均衡器简化方
+案 [J]. 光通信技术, 2023, 47(4): 73. 
+[17] 
+Bi M, Fang X, Yang G, et al. Knowledge-distillation-inspired semi-supervised equalizer in high-
+speed IMDD systems [J]. Opt Lett, 2025, 50(6): 1775-1778. 
+[18] 
+Nagarajan R, Lyubomirsky I, Agazzi O. Low Power DSP-Based Transceivers for Data Center 
+Optical Fiber Communications (Invited Tutorial) [J]. Journal of Lightwave Technology, 2021, 
+39(16): 5221-5231. 
+[19] 
+Suzuki N, Miura H, Matsuda K, et al. 100 Gb/s to 1 Tb/s Based Coherent Passive Optical 
+Network Technology [J]. Journal of Lightwave Technology, 2018, 36(8): 1485-1491. 
+[20] 
+Rosales R, Cano I, Nesset D, et al. Achieving high budget classes in the downstream link of 
+50G-PON [J]. Journal of Optical Communications and Networking, 2021, 13(8). 
+[21] 
+Yonenaga K, Kuwano S. Dispersion-tolerant optical transmission system using duobinary 
+transmitter and binary receiver [J]. JOURNAL OF LIGHTWAVE TECHNOLOGY, 1997, 15. 
+[22] 
+Hu Q, Borkowski R. High-Speed IM/DD Transmission Using Partial Response Signaling With 
+Precoding and Memoryless Decoding [J]. Journal of Lightwave Technology, 2024, 42(11): 
+4038-4047. 
+[23] 
+Shen X, Huo J, Zhou X, et al. Performance comparison among three different Stokes vector 
+direct-detection receivers [J]. Chinese Optics Letters, 2018, 16(10): 100605. 
+[24] 
+Ruffin A B. 
+Stimulated_brillouin_scattering_an_overview_of_measurements_system_impairments_and_
+applications [J]. 
+[25] 
+Fishman D A, Nagel J A. Degradations due to stimulated Brillouin scattering in multigigabit 
+intensity-modulated fiber-optic systems [J]. Journal of Lightwave Technology, 1993, 11(11): 
+1721-1728. 
+[26] 
+Xiaojie Shen X S, Jiahao Huo J H, Xian Zhou X Z, et al. Performance comparison among three 
+different Stokes vector direct-detection receivers [J]. Chinese Optics Letters, 2018, 16(10). 
+ 
+ 
+ 
+
+
+=== 第12页 ===
+Dispersion-resilient Dual-polarization Optical Duobinary with Enhanced 
+Spectral Efficiency for Direct Detection PON 
+Zhao Zhanglu1, Zhengxuan Li*, Siyu Luo, Yingxiong Song 
+1 Key Laboratory Specialty Fiber Optics and Optical Access Networks, Joint 
+International Research Laboratory of Specialty Fiber Optics and Advanced 
+Communication, Shanghai University, Shanghai 200444, China 
+Abstract   
+Objective The continuous expansion of data-intensive services requires scaling passive 
+optical network (PON) capacities from single-wavelength 25 Gbps to 50 Gbps and eventually 
+100 Gbps. ITU-T and IEEE have completed the 50G-PON standardization. The physical 
+layer retains the intensity-modulation direct-detection (IM/DD) architecture and introduces 
+digital signal processing (DSP). Achieving such high capacities over IM/DD PON introduces 
+severe constraints concerning chromatic dispersion (CD) and power budgets. Shifting 
+downstream wavelengths to avoid conflicts with existing EPON systems inevitably increases 
+the CD, amplifying the penalty on the power budget. Increasing the optical launch power 
+provides a straightforward method to improve the power budgets, but this approach is 
+fundamentally restricted by fiber nonlinearities. Specifically, stimulated Brillouin scattering 
+(SBS) becomes the dominant impairment when launch power exceeds approximately 10 
+dBm. Standard formats like PAM4 are particularly vulnerable to SBS because their 
+unsuppressed optical carrier concentrates high power within a narrow spectral region. 
+Coherent technologies offer significant performance advantages through large power budgets 
+and high dispersion tolerance. However, their cost, power consumption, and complexity, 
+particularly at the optical network unit (ONU), are incompatible with PON standards. To 
+conclude, overcoming dispersion limits and elevating the SBS threshold requires a novel, 
+backward-compatible transmission strategy. 
+Methods A dual-polarization optical duobinary (DP-ODB) transmission architecture 
+effectively expands transmission capacity while preserving the format's inherent tolerance to 
+chromatic dispersion and fiber nonlinearities. The fundamental optical duobinary modulation 
+compresses the signal spectrum and introduces a controlled intersymbol interference to 
+reshape the channel memory. The precoding and 0 
+−
+ characteristics ensure that adjacent 
+pulses representing an active state are separated by zero-energy slots. This structural property 
+promotes destructive interference in the pulse tails during fiber transmission, significantly 
+suppressing energy leakage and enhancing overall dispersion tolerance. To double the 
+spectral efficiency without requiring a coherent receiver, the signal is mapped onto two 
+orthogonal polarization states. The experimental setup utilizes an arbitrary waveform 
+generator outputting 176 mV signals, which are amplified to drive a 25 GHz dual-drive 
+Mach-Zehnder modulator biased at the null point. The resulting optical signal is divided into 
+two branches. One branch is delayed by 20 symbols to ensure data decorrelation, while its 
+power is attenuated by 3 dB to establish a strict 2:1 power ratio between the horizontal and 
+
+
+=== 第13页 ===
+vertical polarizations. A polarization beam combiner merges these streams before 
+transmission over single-mode fiber. At the receiver end, an erbium-doped fiber amplifier and 
+a single 35 GHz PIN photodiode execute direct detection. The photodiode captures the scalar 
+sum of both polarizations, executing a square-law detection that directly yields a four-level 
+intensity signal. This non-coherent superposition completely avoids the need for complex 90° 
+optical hybrid mixers at the receiver. 
+Results and Discussions The performance of the DP-ODB architecture demonstrates 
+profound improvements when compared against standard PAM4 modulation across multiple 
+parameters. Extensive digital signal processing optimization reveals that DP-ODB requires a 
+significantly less complex equalizer structure. While PAM4 necessitates 25 feed-forward, 1 
+decision-feedback, and 3 Volterra taps to function near its limit, DP-ODB achieves superior 
+stability using only 25 feed-forward and 3 decision-feedback taps without any nonlinear 
+Volterra terms. Evaluating the dispersion tolerance shows that the PAM4 signal reaches the 
+operational limit at 127.5 ps/nm of accumulated dispersion. The DP-ODB format extends this 
+limit to 170 ps/nm that substantially reduces the need for dispersion compensation in short-
+reach links. Assessing receiver sensitivity yields equally compelling data. At the optimal 
+dispersion point of 42.5 ps/nm, the DP-ODB system achieves a sensitivity of -23 dBm. This 
+represents a 3 dB improvement over the back-to-back baseline of PAM4. Even at the elevated 
+dispersion of 170 ps/nm, DP-ODB maintains a highly capable sensitivity of -19 dBm, 
+proving its robust tolerance to inter-symbol interference. Transitioning the focus to the optical 
+power dimension, splitting the signal across two polarizations fundamentally alters the 
+nonlinear dynamics within the fiber. Each polarization branch operates below the strong SBS 
+gain region. Consequently, the system's SBS tolerance ceiling increases dramatically from 7 
+dBm for PAM4 to 16 dBm for DP-ODB. This distinct 9 dB enhancement stems from two 
+complementary mechanisms. While the carrier-suppressed nature of ODB coding delivers the 
+primary advantage by contributing roughly 7 dB, the physical division of optical power 
+accounts for the remaining 2 dB. Operating at launch powers exceeding 10 dBm allows the 
+system to realize immense link loss budgets. The optimal working point secures a 33 dB 
+budget, and the system retains a robust 29 dB budget even under 170 ps/nm of accumulated 
+dispersion. 
+Conclusions The proposed dual-polarization optical duobinary configuration successfully 
+mitigates the dual threats of chromatic dispersion and stimulated Brillouin scattering inherent 
+in high-speed access networks. Consolidating the architectural complexity at the optical line 
+terminal ensures that the remote optical network units remain highly simplified and 
+economically viable for widespread deployment. The system establishes remarkable link loss 
+budgets of up to 33 dB, ensuring complete compatibility with long-reach optical distribution 
+networks demanding high split ratios. Elevating the transmission power without triggering 
+catastrophic nonlinear penalties proves that direct-detection architectures can be extended 
+well beyond their traditional physical boundaries. Preliminary validation at 50 GBaud further 
+confirms the scalability of this architecture. This framework delivers a highly practical, 
+standard-compatible pathway for deploying next-generation 100G single-wavelength passive 
+optical networks. 
+
+
+=== 第14页 ===
+Key words  passive optical networks; optical duobinary; polarization-multiplexing; fiber 
+nonlinearities. 
+ 
